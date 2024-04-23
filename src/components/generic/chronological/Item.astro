@@ -12,13 +12,16 @@ const space = "50px";
 <style define:vars={{ color, space }}>
   div.item::after{
     background-color: var(--color);
-    left: var(--space);
+    left: calc(var(--space) + 11px);
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    width: 90%;
   }
   div.item{
     margin-right: var(--space);
   }
 </style>
-<div class="item after:w-full after:h-2 relative relative after:absolute after:top-60% after:content-['']">
+<div class="item  after:h-2 relative relative after:absolute after:top-60% after:content-['']">
   <Card color={color}>
     test
   </Card>
