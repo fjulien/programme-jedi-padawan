@@ -4,7 +4,12 @@ import UnoCSS from 'unocss/astro';
 
 export default defineConfig({
   // used to generate images
-  site: 'https://fjulien.github.io',
+  site:
+    process.env.VERCEL_ENV === 'production'
+      ? 'https://fjulien.github.io'
+      : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}/`
+        : 'https://localhost:3000/',
   base: 'programme-jedi-padawan',
   trailingSlash: 'ignore',
   integrations: [sitemap(), UnoCSS({ injectReset: true })],

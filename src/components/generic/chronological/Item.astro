@@ -1,0 +1,25 @@
+---
+import { Card, Config } from "@eliancodes/brutal-ui";
+
+interface Props {
+	title: string;
+	date: Date;
+}
+
+const color = Config.colors[Math.floor(Math.random() * Config.colors.length)];
+const space = "50px";
+---
+<style define:vars={{ color, space }}>
+  div.item::after{
+    background-color: var(--color);
+    left: var(--space);
+  }
+  div.item{
+    margin-right: var(--space);
+  }
+</style>
+<div class="item after:w-full after:h-2 relative relative after:absolute after:top-60% after:content-['']">
+  <Card color={color}>
+    test
+  </Card>
+</div>

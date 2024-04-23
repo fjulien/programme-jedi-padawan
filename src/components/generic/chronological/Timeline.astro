@@ -1,0 +1,25 @@
+---
+import Item from "@components/generic/chronological/Item.astro";
+type EventTimeline = {
+	title: string;
+	date: Date;
+};
+const eventsTimeline: EventTimeline[] = [
+	{
+		title: "dada",
+		date: new Date(),
+	},
+	{
+		title: "dada",
+		date: new Date(),
+	},
+];
+---
+
+<section class="flex">
+{eventsTimeline.map((item, index)=>
+    <div class="flex">
+        <Item title={item.title} date={item.date} />
+    </div>
+    )}
+</section>
