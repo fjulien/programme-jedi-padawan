@@ -1,15 +1,21 @@
 ---
-import { Card, Config } from "@eliancodes/brutal-ui";
+import { Card } from "@eliancodes/brutal-ui";
 
-interface Props {
+export type ElementTimeline = {
 	title: string;
 	date: Date;
+	color: string;
+};
+interface Props {
+	elementTimeline: ElementTimeline;
+	rightElementColor?: string;
 }
 
-const color = Config.colors[Math.floor(Math.random() * Config.colors.length)];
+const { elementTimeline, rightElementColor } = Astro.props;
+console.log(rightElementColor);
 const space = "50px";
 ---
-<style define:vars={{ color, space }}>
+<style define:vars={{ color: elementTimeline.color, space }}>
   div.item::after{
     background-color: var(--color);
     left: calc(var(--space) + 11px);
@@ -21,8 +27,8 @@ const space = "50px";
     margin-right: var(--space);
   }
 </style>
-<div class="item  after:h-2 relative relative after:absolute after:top-60% after:content-['']">
-  <Card color={color}>
+<div class=`${rightElementColor? '' : 'item'}item  after:h-2 relative relative after:absolute after:top-60% after:content-['']`>
+  <Card color={elementTimeline.color}>
     test
   </Card>
 </div>

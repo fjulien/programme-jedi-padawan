@@ -1,25 +1,60 @@
 ---
+import { Config } from "@eliancodes/brutal-ui";
 import Item from "@components/generic/chronological/Item.astro";
-type EventTimeline = {
-	title: string;
-	date: Date;
-};
-const eventsTimeline: EventTimeline[] = [
+import type { ElementTimeline } from "@components/generic/chronological/Item.astro";
+
+type Months =
+	| "mars"
+	| "avril"
+	| "mai"
+	| "juin"
+	| "juillet"
+	| "aout"
+	| "septembre";
+type ElementsTimelineByMonth = [
 	{
-		title: "dada",
-		date: new Date(),
+		order: 0;
+		month: Months;
+		elementTimeline: ElementTimeline[];
 	},
+];
+
+const elementsTimelineByMonth: ElementsTimelineByMonth = [
 	{
-		title: "dada",
-		date: new Date(),
+		order: 0,
+		month: "mars",
+		elementTimeline: [
+			{
+				title: "dada",
+				date: new Date(),
+				color: Config.colors[Math.floor(Math.random() * Config.colors.length)],
+			},
+			{
+				title: "dada",
+				date: new Date(),
+				color: Config.colors[Math.floor(Math.random() * Config.colors.length)],
+			},
+		],
 	},
 ];
 ---
 
-<section class="flex">
-{eventsTimeline.map((item, index)=>
-    <div class="flex">
-        <Item title={item.title} date={item.date} />
-    </div>
-    )}
+<section >
+	{
+		elementsTimelineByMonth.sort((a, b) => a.order - b.order).map(({elementTimeline, month})=>
+		<>
+			<h3 class="text-3xl mt-4">{month}</h3> 
+			<div class="flex flex-wrap">
+			{elementTimeline.map((element, index) => 
+				<div class="mt-4">
+					<Item elementTimeline={element} rightElementColor={elementTimeline[index + 1]?.color} />
+				</div>)}
+			</div>
+		</>
+		)
+	}
+	
+
+		
+
 </section>
