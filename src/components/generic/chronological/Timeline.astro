@@ -1,49 +1,332 @@
 ---
-import { Config } from "@eliancodes/brutal-ui";
+import { Config, Card } from "@eliancodes/brutal-ui";
 import Item from "@components/generic/chronological/Item.astro";
 import type { ElementTimeline } from "@components/generic/chronological/Item.astro";
 
 type Months =
+	| "janvier"
+	| "février"
 	| "mars"
 	| "avril"
 	| "mai"
 	| "juin"
 	| "juillet"
-	| "aout"
-	| "septembre";
-type ElementsTimelineByMonth = [
-	{
-		order: 0;
-		month: Months;
-		elementTimeline: ElementTimeline[];
-	},
-];
+	| "août"
+	| "septembre"
+	| "octobre"
+	| "novembre"
+	| "décembre";
+type ElementsTimelineByMonth = {
+	order: 0;
+	month: Months;
+	elementTimeline: ElementTimeline[];
+}[];
 
+/*
+- [x] S11: 11-17 mars 2024
+- [x] S12: 18-24 mars 2024
+  - 🎙️ Poster à DEVFEST LILLE
+  - 🎙️ Poster à DEVQUEST
+- [x] S13: 25-31 mars 2024
+  - 🎙️ Poster à Volcamp
+  - 🎙️ Poster à Breizhcamp
+  - Partage de mon projet
+  - 🗣️ Feedbacks
+- [x] S14: 1-7 avril 2024
+- [x] S15: 8-14 avril 2024
+  - 🎙️ jeudi 11 : Formation feedbacks
+- [ ] S16: 15-21 avril 2024
+- [ ] S17: 22-28 avril 2024
+  - 🗣️ Feedbacks
+  - [ ] 🔧 Partage d'une veille
+  - [ ] 🎭 Interview de Christophe
+- [ ] S18: 29-5 mai 2024
+- [ ] S19: 6-12 mai 2024
+- [ ] S20: 13-19 mai 2024
+  - 🎙️ vendredi 17 : Formation prise de parole fondamentaux
+- [ ] S21: 20-26 mai 2024
+  - [ ] 🎭 Poster un article
+  - [ ] 🎭 Partager sur linkedin l'article
+  - Point de suivi 1
+  - 🎙️ vendredi 24 : Formation prise de parole avancée
+- [ ] S22: 27-2 juin 2024
+  - 🗣️ Feedbacks
+  - [ ] 🔧 Partage d'une veille
+  - [ ] 🎙️ Poster à un meetup
+- [ ] S23: 3-9 juin 2024
+  - 🎙️ mardi 4: EventTeck front
+- [ ] S24: 10-16 juin 2024
+  - Mardi 18 : Sensibilisation à la rédaction de contenu
+- [ ] S25: 17-23 juin 2024
+- [ ] S26: 24-30 juin 2024
+  - 🗣️ Feedbacks
+  - [ ] 🔧 Partage d'une veille
+- [ ] S27: 1-7 juillet 2024
+- [ ] S28: 8-14 juillet 2024
+- [ ] S29: 15-21 juillet 2024
+- [ ] S30: 22-28 juillet 2024
+  - 🗣️ Feedbacks
+  - [ ] 🔧 Partage d'une veille
+  - [ ] 🔧 Animer un point technique
+  - [ ] 🔧 Donner une formation interne
+  - [ ] 🔧 Faire une qualification technique
+- [ ] S31: 29-4 août 2024
+- [ ] S32: 5-11 août 2024
+- [ ] S33: 12-18 août 2024
+- [ ] S34: 19-25 août 2024
+  - 🗣️ Feedbacks
+  - [ ] 🔧 Partage d'une veille
+  - [ ] 🔧 Participer à un projet open source
+  - [ ] 🔧 Mettre en place une veille efficace
+- [ ] S35: 26-1 septembre 2024
+- [ ] S36: 2-8 septembre 2024
+- [ ] S37: 9-15 septembre 2024
+  - [ ] 🔧 Certifications/Formations
+  - [ ] 🔧 Créer un site Padawan
+  - [ ] 🎭 Objectif communication
+  - [ ] 🎙️ Objectif conférence
+  - [ ] 🔧 Objectif technique
+*/
+const months: Months[] = [
+	"janvier",
+	"février",
+	"mars",
+	"avril",
+	"mai",
+	"juin",
+	"juillet",
+	"août",
+	"septembre",
+	"octobre",
+	"novembre",
+	"decembre",
+];
+const color = Config.colors[Math.floor(Math.random() * Config.colors.length)];
 const elementsTimelineByMonth: ElementsTimelineByMonth = [
+	// 27
 	{
-		order: 0,
+		order: 1,
 		month: "mars",
 		elementTimeline: [
 			{
 				title: "dada",
-				date: new Date(),
-				color: Config.colors[Math.floor(Math.random() * Config.colors.length)],
+				weekNumber: 11,
+				color,
 			},
 			{
 				title: "dada",
-				date: new Date(),
-				color: Config.colors[Math.floor(Math.random() * Config.colors.length)],
+				weekNumber: 12,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 13,
+				color,
+			},
+		],
+	},
+	{
+		order: 2,
+		month: "avril",
+		elementTimeline: [
+			{
+				title: "dada",
+				weekNumber: 14,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 15,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 16,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 17,
+				color,
+			},
+		],
+	},
+	{
+		order: 0,
+		month: "mai",
+		elementTimeline: [
+			{
+				title: "dada",
+				weekNumber: 18,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 19,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 20,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 21,
+				color,
+			},
+		],
+	},
+	{
+		order: 0,
+		month: "juin",
+		elementTimeline: [
+			{
+				title: "dada",
+				weekNumber: 22,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 23,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 24,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 25,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 26,
+				color,
+			},
+		],
+	},
+	{
+		order: 0,
+		month: "juillet",
+		elementTimeline: [
+			{
+				title: "dada",
+				weekNumber: 27,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 28,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 29,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 30,
+				color,
+			},
+		],
+	},
+	{
+		order: 0,
+		month: "août",
+		elementTimeline: [
+			{
+				title: "dada",
+				weekNumber: 31,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 32,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 33,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 34,
+				color,
+			},
+		],
+	},
+	{
+		order: 0,
+		month: "septembre",
+		elementTimeline: [
+			{
+				title: "dada",
+				weekNumber: 35,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 36,
+				color,
+			},
+			{
+				title: "dada",
+				weekNumber: 37,
+				color,
 			},
 		],
 	},
 ];
+const nowMonth = months[new Date().getMonth()];
 ---
-
-<section >
+<a href=`#mois-${nowMonth}`>tst</a>
+<section class='grid grid-cols-1 md:grid-cols-3 grid-rows-* mt-20 md: z gap-y-10 gap-x-4'>
+	<!-- <h2 class='hidden'>Programme jedi padawan</h2> sticky rotate-225 style={{ writingMode: 'vertical-rl' }}-->
+        <div class="md:grid-start-1 col-span-1 row-span-full sticky top-8 ">
+          <Card >
+              <p class='text-2xl md:text-5xl lg:text-6xl text-center'>
+                Agenda 
+              </p>            
+          </Card>
+        </div>
+	  {elementsTimelineByMonth.map((e, i)=>
+	  <>
+	  <div class=`md:col-start-2 col-span-1 row-span-${e.elementTimeline.length}`>
+		<div id=`mois-${e.month}` class="top-8 sticky">
+		<Card>
+          <p class="capitalize text-1xl md:text-2xl lg:text-3xl text-center">{e.month}</p>
+        </Card>
+		</div>
+	</div>
+	<div class='md:col-start-3 col-span-1 row-span-1'>
+		{e.elementTimeline.map((elementTimeline)=>
+		<div class="mb-4 top-8 last:mb-0" >
+          <Item elementTimeline={elementTimeline} />
+	</div>
+		)}
+	</div>
+		</>)}
+      <!-- <div style={{ writingMode: 'vertical-rl' }}>
+        <Card>
+          test
+        </Card>
+      </div> 
+	  <div style={{ writingMode: 'vertical-rl' }}>
+        <Card>
+          test
+        </Card>
+      </div>  -->
+	
+	<!-- <h2 class="text-4xl mt-4 capitalize">Timeline</h2>
 	{
 		elementsTimelineByMonth.sort((a, b) => a.order - b.order).map(({elementTimeline, month})=>
 		<>
-			<h3 class="text-3xl mt-4">{month}</h3> 
+			<h3 class="text-3xl mt-3 capitalize">{month}</h3> 
 			<div class="flex flex-wrap">
 			{elementTimeline.map((element, index) => 
 				<div class="mt-4">
@@ -52,9 +335,34 @@ const elementsTimelineByMonth: ElementsTimelineByMonth = [
 			</div>
 		</>
 		)
-	}
-	
-
-		
-
+		"agenda mars event1"
+		"agenda mars event2"
+		"agenda mars event3"
+		"agenda mars event4"
+		"agenda avril event1"
+		"agenda avril event2"
+		"agenda avril event3"
+		"agenda avril event4"
+		"agenda mai event1"
+		"agenda mai event2"
+		"agenda mai event3"
+		"agenda mai event4"
+		"agenda juin event1"
+		"agenda juin event2"
+		"agenda juin event3"
+		"agenda juin event4"
+		"agenda juillet event1"
+		"agenda juillet event2"
+		"agenda juillet event3"
+		"agenda juillet event4"
+		"agenda aout event1"
+		"agenda aout event2"
+		"agenda aout event3"
+		"agenda aout event4"
+		"agenda septembre event1"
+		"agenda septembre event2"
+		"agenda septembre event3"
+		"agenda septembre event4"
+		"agenda octobre event1"
+	} -->
 </section>

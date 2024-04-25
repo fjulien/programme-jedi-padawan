@@ -1,25 +1,25 @@
 ---
 interface Props {
-  pageTitle?: string;
+	pageTitle?: string;
 }
 
 const navigationItems = [
-  { name: 'Home', url: '/' },
-  { name: 'Blog', url: '/blog/' },
+	{ name: "Accueil", url: "/programme-jedi-padawan" },
+	{ name: "Blog", url: "/blog/" },
 ];
 
 const socialIcons = [
-  {
-    name: 'GitHub',
-    url: 'https://github.com/eliancodes/brutal',
-    icon: 'i-uil-github',
-  },
-  {
-    name: 'Twitter',
-    url: 'https://www.twitter.com/eliancodes',
-    icon: 'i-uil-twitter',
-  },
-  { name: 'RSS', url: '/feed.xml', icon: 'i-uil-rss' },
+	{
+		name: "GitHub",
+		url: "https://github.com/fjulien",
+		icon: "i-uil-github",
+	},
+	{
+		name: "Twitter",
+		url: "https://www.twitter.com/f_julien_fr",
+		icon: "i-uil-twitter",
+	},
+	{ name: "RSS", url: "/programme-jedi-padawan/feed.xml", icon: "i-uil-rss" },
 ];
 
 const { pageTitle } = Astro.props;
@@ -27,7 +27,7 @@ const { pageTitle } = Astro.props;
 
 <header class='border-b-4 border-black flex justify-between p-6 items-center'>
   {pageTitle && <h1 class='hidden'>{pageTitle}</h1>}
-  <a href='/' title='Back to Home'>
+  <a href='/programme-jedi-padawan' title='Retour à l'accueil'>
     <abbr class='righteous md:text-5xl' title="Programme jedi padawan">PJP</abbr> 
   </a>
   <nav class='hidden md:inline-block'>
@@ -39,7 +39,7 @@ const { pageTitle } = Astro.props;
             <a
               class='text-lg font-medium hover:text-green hover:underline transition-all duration-150 ease-in-out'
               href={item.url}
-              title={`Go to ${item.name}`}
+              title={`Aller à ${item.name}`}
             >
               {item.name}
             </a>
@@ -53,7 +53,7 @@ const { pageTitle } = Astro.props;
               href={item.url}
               class='hover:text-green hover:underline transition-all duration-150 ease-in-out'
               target='_blank'
-              title={`'See @ElianCodes on ${item.name}`}
+              title={`'Voir @fjulien on ${item.name}`}
             >
               <div class:list={[item.icon, 'w-6 h-6']} />
             </a>
@@ -65,7 +65,7 @@ const { pageTitle } = Astro.props;
   <nav class='md:hidden flex'>
     <h2 class='hidden'>Mobile Navigation</h2>
     <ul>
-      <li><a href='/blog/'>Blog</a></li>
+      <li><a href='/programme-jedi-padawan/blog/'>Blog</a></li>
     </ul>
   </nav>
 </header>

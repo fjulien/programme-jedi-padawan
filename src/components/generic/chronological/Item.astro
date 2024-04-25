@@ -3,32 +3,70 @@ import { Card } from "@eliancodes/brutal-ui";
 
 export type ElementTimeline = {
 	title: string;
-	date: Date;
+	weekNumber: number;
+	events?: sting[];
 	color: string;
 };
 interface Props {
 	elementTimeline: ElementTimeline;
-	rightElementColor?: string;
 }
 
-const { elementTimeline, rightElementColor } = Astro.props;
-console.log(rightElementColor);
-const space = "50px";
+const { elementTimeline } = Astro.props;
+
+const getDateOfIsoWeek = (weekp: number) => {
+	const week = Number.parseFloat(weekp.toString());
+	const year = Number.parseFloat("2024".toString());
+
+	if (week < 1 || week > 53) {
+		throw new RangeError("ISO 8601 weeks are numbered from 1 to 53");
+	}
+	if (!Number.isInteger(week)) {
+		throw new TypeError("Week must be an integer");
+	}
+	if (!Number.isInteger(year)) {
+		throw new TypeError("Year must be an integer");
+	}
+
+	const simple: Date = new Date(year, 0, 1 + (week - 1) * 7);
+	const dayOfWeek: number = simple.getDay();
+	const isoWeekStart = simple;
+
+	// Get the Monday past, and add a week if the day was
+	// Friday, Saturday or Sunday.
+
+	isoWeekStart.setDate(simple.getDate() - dayOfWeek + 1);
+	if (dayOfWeek > 4) {
+		isoWeekStart.setDate(isoWeekStart.getDate() + 7);
+	}
+
+	// The latest possible ISO week starts on December 28 of the current year.
+	if (
+		isoWeekStart.getFullYear() > year ||
+		(isoWeekStart.getFullYear() === year &&
+			isoWeekStart.getMonth() === 11 &&
+			isoWeekStart.getDate() > 28)
+	) {
+		throw new RangeError(`${year} has no ISO week ${week}`);
+	}
+
+	const sunday = new Date(isoWeekStart);
+	sunday.setDate(sunday.getDate() + 6);
+
+	return { monday: isoWeekStart, sunday };
+};
+
+const { monday, sunday } = getDateOfIsoWeek(elementTimeline.weekNumber);
+const formatDate = (date: Date) => {
+	return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+};
 ---
-<style define:vars={{ color: elementTimeline.color, space }}>
-  div.item::after{
-    background-color: var(--color);
-    left: calc(var(--space) + 11px);
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
-    width: 90%;
-  }
-  div.item{
-    margin-right: var(--space);
-  }
-</style>
-<div class=`${rightElementColor? '' : 'item'}item  after:h-2 relative relative after:absolute after:top-60% after:content-['']`>
+
+<div>
   <Card color={elementTimeline.color}>
-    test
+    <p class="md:hidden block">Semaine {elementTimeline.weekNumber}</p>
+    <div class="sm:block hidden">
+      Semaine {elementTimeline.weekNumber}
+      {formatDate(monday)} - {formatDate(sunday)}
+    </div>
   </Card>
 </div>
