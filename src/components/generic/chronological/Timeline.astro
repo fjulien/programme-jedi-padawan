@@ -17,7 +17,7 @@ type Months =
 	| "novembre"
 	| "décembre";
 type ElementsTimelineByMonth = {
-	order: 0;
+	order: number;
 	month: Months;
 	elementTimeline: ElementTimeline[];
 }[];
@@ -99,7 +99,7 @@ const months: Months[] = [
 	"septembre",
 	"octobre",
 	"novembre",
-	"decembre",
+	"décembre",
 ];
 const color = Config.colors[Math.floor(Math.random() * Config.colors.length)];
 const elementsTimelineByMonth: ElementsTimelineByMonth = [
