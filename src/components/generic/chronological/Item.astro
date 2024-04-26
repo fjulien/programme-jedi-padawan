@@ -2,9 +2,9 @@
 import { Card } from "@eliancodes/brutal-ui";
 
 export type ElementTimeline = {
-	title: string;
+	title?: string;
 	weekNumber: number;
-	events?: sting[];
+	events?: string[];
 	color: string;
 };
 interface Props {
@@ -59,14 +59,28 @@ const { monday, sunday } = getDateOfIsoWeek(elementTimeline.weekNumber);
 const formatDate = (date: Date) => {
 	return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 };
+const isNow = sunday > new Date();
 ---
 
 <div>
-  <Card color={elementTimeline.color}>
-    <p class="md:hidden block">Semaine {elementTimeline.weekNumber}</p>
-    <div class="sm:block hidden">
-      Semaine {elementTimeline.weekNumber}
-      {formatDate(monday)} - {formatDate(sunday)}
-    </div>
-  </Card>
+	<Card color={elementTimeline.color}>
+		<p class="md:hidden block">Semaine {elementTimeline.weekNumber}</p>
+		<div class="sm:block hidden">
+			<p class=`${isNow? 'font-bold' : 'line-through'}`>
+				Du {formatDate(monday)} au {formatDate(sunday)}
+			</p>
+			{
+				elementTimeline.events ? (
+					<ul>
+						{elementTimeline.events.map((event) => (
+							<li>{event}</li>
+						))}
+					</ul>
+				) : (
+					<p>Ici, tout est calme</p>
+				)
+			}
+			test {isNow.toString()}
+		</div>
+	</Card>
 </div>
