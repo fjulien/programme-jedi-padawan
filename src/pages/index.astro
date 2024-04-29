@@ -4,6 +4,8 @@ import TimeLine from "@components/generic/chronological/Timeline.astro";
 import MobileSocials from "@components/home/MobileSocials.astro";
 import { Card, Config } from "@eliancodes/brutal-ui";
 import { Image } from "astro:assets";
+import HomeSection from "../layouts/HomeSection.astro";
+import {months} from "@models/TimeLineModel";
 
 const builtWith = [
 	{ name: "Astro", url: "https://astro.build/" },
@@ -24,6 +26,8 @@ const generateRandomColor = () => {
 	return Config.colors[Math.floor(Math.random() * Config.colors.length)];
 };
 const color = generateRandomColor();
+const nowMonth = months[new Date().getMonth()];
+
 ---
 <style define:vars={{ color}}>
   main.pjp {
@@ -101,6 +105,11 @@ const color = generateRandomColor();
         </Card>
       </div> -->
     </section>
-    <TimeLine/>
+
+    <HomeSection title="Agenda" link=`#mois-${nowMonth}` libelle="Mois en cours">
+      <TimeLine/>
+    </HomeSection>
+    <HomeSection title="Projets">
+    </HomeSection>
   </main>
 </Layout>

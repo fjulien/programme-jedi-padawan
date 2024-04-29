@@ -1,20 +1,10 @@
 ---
 import { Card } from "@eliancodes/brutal-ui";
 
-export type ElementTimeline = {
-	title?: string;
-	weekNumber: number;
-	events?: string[];
-	color: string;
-};
-interface Props {
-	elementTimeline: ElementTimeline;
-}
+const { timelineWeek } = Astro.props;
 
-const { elementTimeline } = Astro.props;
-
-const getDateOfIsoWeek = (weekp: number) => {
-	const week = Number.parseFloat(weekp.toString());
+const getDateOfIsoWeek : (weekp: number)=>{monday: Date, sunday: Date} = (weekNumber: number) => {
+	const week = Number.parseFloat(weekNumber.toString());
 	const year = Number.parseFloat("2024".toString());
 
 	if (week < 1 || week > 53) {
@@ -55,7 +45,7 @@ const getDateOfIsoWeek = (weekp: number) => {
 	return { monday: isoWeekStart, sunday };
 };
 
-const { monday, sunday } = getDateOfIsoWeek(elementTimeline.weekNumber);
+const { monday, sunday } = getDateOfIsoWeek(timelineWeek.weekNumber);
 const formatDate = (date: Date) => {
 	return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 };
@@ -63,16 +53,16 @@ const isNow = sunday > new Date();
 ---
 
 <div>
-	<Card color={elementTimeline.color}>
-		<p class="md:hidden block">Semaine {elementTimeline.weekNumber}</p>
+	<Card color={timelineWeek.color}>
+		<p class="md:hidden block">Semaine {timelineWeek.weekNumber}</p>
 		<div class="sm:block hidden">
 			<p class=`${isNow? 'font-bold' : 'line-through'}`>
 				Du {formatDate(monday)} au {formatDate(sunday)}
 			</p>
 			{
-				elementTimeline.events ? (
+				timelineWeek.events ? (
 					<ul>
-						{elementTimeline.events.map((event) => (
+						{timelineWeek.events.map((event) => (
 							<li>{event}</li>
 						))}
 					</ul>
